@@ -15,6 +15,13 @@ void displayBoard();
 
 void detectMovement();
 
-void boardMove(char direction);
+void boardMoveLeft();
+void boardMoveRight();
+void boardMoveUp();
+void boardMoveDown();
+
+const int BOARD_SIZE = 4;
+
+extern int board[4][4];
 
 #endif

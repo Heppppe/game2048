@@ -4,11 +4,9 @@
 
 #include "headers.h"
 
-using namespace std;
-
-const int BOARD_SIZE = 4;
-
 int board[BOARD_SIZE][BOARD_SIZE] = { {0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0} };
+
+using namespace std;
 
 short emptySlotsCount()
 {
@@ -27,15 +25,12 @@ short emptySlotsCount()
 void createRandomElement(int emptySlots)
 {
 	srand((unsigned)time(NULL));
-	short slot = rand() % emptySlots;
+	short slot = rand() % emptySlots + 1;
 
-	short x = 0;
+	short x = -1;
 	short y = 0;
 	while (slot > 0)
 	{
-		if (!board[y][x])
-			slot++;
-
 		if (x < BOARD_SIZE - 1)
 			x++;
 		else
@@ -45,6 +40,9 @@ void createRandomElement(int emptySlots)
 			if (y == BOARD_SIZE)
 				y = 0;
 		}
+		if (!board[y][x])
+			slot--;
+
 	}
 	if (rand() % 4)
 		board[y][x] = 2;
@@ -75,12 +73,13 @@ void gameStart()
 void displayBoard()
 {
 	system("CLS");
+	cout << "\n";
 
 	for (int i = 0; i < BOARD_SIZE; i++)
 	{
 		for (int j = 0; j < BOARD_SIZE; j++)
 		{
-			cout << board[j][i] << " ";
+			cout << board[i][j] << " ";
 		}
 		cout << "\n";
 	}
@@ -96,16 +95,16 @@ void detectMovement()
 		switch (c)
 		{
 		case 119:
-			cout << endl << "Up" << endl;
+			boardMoveUp();
 			break;
 		case 115:
-			cout << endl << "Down" << endl;
+			boardMoveDown();
 			break;
 		case 97:
-			cout << endl << "Left" << endl;
+			boardMoveLeft();
 			break;
 		case 100:
-			cout << endl << "Right" << endl;
+			boardMoveRight();
 			break;
 		default:
 			detectMovement();
@@ -117,57 +116,17 @@ void detectMovement()
 		switch (int ex = _getch())
 		{
 		case KEY_UP:
-			cout << endl << "Up" << endl;
+			boardMoveUp();
 			break;
 		case KEY_DOWN:
-			cout << endl << "Down" << endl;
+			boardMoveDown();
 			break;
 		case KEY_LEFT:
-			cout << endl << "Left" << endl;
+			boardMoveLeft();
 			break;
 		case KEY_RIGHT:
-			cout << endl << "Right" << endl;
+			boardMoveRight();
 			break;
-		}
-	}
-}
-
-void boardMove(char direction)
-{
-
-
-//left
-	for (int y = 0; y < BOARD_SIZE; y++)
-	{
-		short empties = 0;
-		int furthest = 1;
-		for (int x = 0; x < BOARD_SIZE; x++)
-		{
-			if (!board[y][x])
-				empties++;
-			else
-			{
-				int previous = board[y][x];
-				x++;
-				while (x < BOARD_SIZE)
-				{
-					if (board[y][x])
-					{
-						if (board[y][x] == previous)
-						{
-
-						}
-					}
-					else
-						empties++;
-
-					x++;
-				}
-				if (empties)
-				{
-					
-				}
-			}
 		}
 	}
 }

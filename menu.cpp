@@ -11,7 +11,7 @@ using namespace std;
 void menu()
 {
 	system("CLS");
-	cout << "2024\n";
+	cout << "2048\n";
 	cout << "Wybierz opcje (1,2,3)\n\n";
 	cout << "1. Graj\n";
 	cout << "2. Sterowanie\n";

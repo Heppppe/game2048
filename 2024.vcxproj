@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="boardMoves.cpp" />
     <ClCompile Include="gamePlay.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menu.cpp" />
