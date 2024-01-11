@@ -20,8 +20,13 @@ void boardMoveRight();
 void boardMoveUp();
 void boardMoveDown();
 
+int numLen(int n);
+
+void gameOver();
+
 const int BOARD_SIZE = 4;
 
-extern int board[4][4];
+extern int board[BOARD_SIZE][BOARD_SIZE];
+extern bool gameStarted;
 
 #endif

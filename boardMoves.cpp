@@ -70,6 +70,7 @@ void boardMoveLeft()
 		}
 	}
 	createRandomElement();
+	if(gameStarted)
 	displayBoard();
 }
 

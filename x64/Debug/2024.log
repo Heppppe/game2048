@@ -1,4 +1,5 @@
-﻿  gamePlay.cpp
+﻿  boardMoves.cpp
+  gamePlay.cpp
   main.cpp
   menu.cpp
   Generating Code...
