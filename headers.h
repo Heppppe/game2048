@@ -24,6 +24,8 @@ int numLen(int n);
 
 void gameOver();
 
+void update();
+
 const int BOARD_SIZE = 4;
 
 extern int board[BOARD_SIZE][BOARD_SIZE];

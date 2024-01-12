@@ -8,6 +8,8 @@ using namespace std;
 
 int wynik = 0;
 
+bool gameActive = false;
+
 int numLen(int n)
 {
 	int c = 0;
@@ -35,8 +37,10 @@ short emptySlotsCount()
 
 void createRandomElement(int emptySlots)
 {
-	if (!emptySlots) {
-		gameOver();
+	if (!emptySlots)
+	{
+		gameStarted = false;
+		gameActive = false;
 	}
 	else
 	{
@@ -88,8 +92,20 @@ void gameStart()
 		createRandomElement(BOARD_SIZE * BOARD_SIZE);
 		createRandomElement(BOARD_SIZE * BOARD_SIZE - 1);
 	}
+	gameActive = true;
+	while (gameActive)
+	{
+		update();
+	}
+	if(!gameStarted)
+		gameOver();
+}
 
+void update()
+{
 	displayBoard();
+	detectMovement();
+	createRandomElement();
 }
 
 
@@ -166,7 +182,6 @@ void displayBoard()
 		cout << '-';
 	cout << "\nWynik: " << wynik;
 	cout << "\n\nWciœnij 1, ¿eby powróciæ do menu";
-	detectMovement();
 }
 
 void detectMovement()
@@ -190,7 +205,7 @@ void detectMovement()
 			boardMoveRight();
 			break;
 		case 49:
-			menu();
+			gameActive = false; break;
 		default:
 			detectMovement();
 		}
@@ -233,5 +248,4 @@ void gameOver()
 	int c = _getch();
 	if (c && c == 224)
 		c = _getch();
-	menu();
 }

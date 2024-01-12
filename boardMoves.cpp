@@ -7,12 +7,13 @@ using namespace std;
 
 void boardMoveLeft()
 {
+	/*
 	int boardBefore[BOARD_SIZE][BOARD_SIZE];
 	for (int i = 0; i < BOARD_SIZE; i++)
 	{
 		for (int j = 0; j < BOARD_SIZE; j++)
 			boardBefore[i][j] = board[i][j];
-	}
+	}*/
 
 	for (int y = 0; y < BOARD_SIZE; y++)
 	{
@@ -69,9 +70,6 @@ void boardMoveLeft()
 			}
 		}
 	}
-	createRandomElement();
-	if(gameStarted)
-	displayBoard();
 }
 
 
@@ -134,8 +132,6 @@ void boardMoveRight()
 			}
 		}
 	}
-	createRandomElement();
-	displayBoard();
 }
 
 
@@ -198,8 +194,6 @@ void boardMoveUp()
 			}
 		}
 	}
-	createRandomElement();
-	displayBoard();
 }
 
 
@@ -262,6 +256,4 @@ void boardMoveDown()
 			}
 		}
 	}
-	createRandomElement();
-	displayBoard();
 }

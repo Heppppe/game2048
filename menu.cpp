@@ -10,31 +10,31 @@ using namespace std;
 
 void menu()
 {
-	system("CLS");
-	cout << "2048\n";
-	cout << "Wybierz opcje (1,2,3)\n\n";
-	cout << "1. Graj\n";
-	cout << "2. Sterowanie\n";
-	cout << "3. Wyjdź\n\n";
-
-	bool wrongChoiceFlag = true;
-	bool messageShown = false;
-	while (wrongChoiceFlag)
+	bool gameOn = true;
+	bool wrongChoiceFlag = false;
+	while (gameOn)
 	{
-		wrongChoiceFlag = false;
+		system("CLS");
+		cout << "2048\n";
+		cout << "Wybierz opcje (1,2,3)\n\n";
+		cout << "1. Graj\n";
+		cout << "2. Sterowanie\n";
+		cout << "3. Wyjdź\n\n";
+
+		if (wrongChoiceFlag)
+		{
+			cout << "Nieprawidłowa opcja\n";
+			wrongChoiceFlag = false;
+		}
+
 		char ch = _getch();
 		switch (ch)
 		{
 		case '1': gameStart(); break;
 		case '2': sterowanie(); break;
-		case '3': break;
-		default: 
+		case '3': gameOn = false; gameStarted = false; break;
+		default:
 			wrongChoiceFlag = true;
-			if (!messageShown)
-			{
-				cout << "Nieprawidłowa opcja\n";
-				messageShown = true;
-			}
 		}
 	}
 }
@@ -48,5 +48,4 @@ void sterowanie()
 	_setmode(_fileno(stdout), _O_TEXT);
 	cout << "Wciśnij dowolny klawisz, żeby powrócić do menu.\n";
 	_getch();
-	menu();
 }
