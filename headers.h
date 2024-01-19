@@ -22,9 +22,14 @@ void boardMoveDown();
 
 int numLen(int n);
 
+int readHighscore();
+void saveScore(int score);
+int getScore();
 void gameOver();
 
 void update();
+
+void exitGame();
 
 const int BOARD_SIZE = 4;
 

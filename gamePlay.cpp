@@ -1,12 +1,15 @@
 #include <iostream>
 #include <cstdlib>
 #include <conio.h>
+#include <string>
+#include <fstream>
 
 #include "headers.h"
 
 using namespace std;
 
 int wynik = 0;
+int highscore = 0;
 
 bool gameActive = false;
 
@@ -86,6 +89,7 @@ bool gameStarted = false;
 
 void gameStart()
 {
+	highscore = readHighscore();
 	if (!gameStarted)
 	{
 		gameStarted = true;
@@ -181,6 +185,7 @@ void displayBoard()
 	for (int i = 0; i < consoleSize; i++)
 		cout << '-';
 	cout << "\nWynik: " << wynik;
+	cout << "\nNajwy¿szy wynik: " << highscore;
 	cout << "\n\nWciœnij 1, ¿eby powróciæ do menu";
 }
 
@@ -231,6 +236,22 @@ void detectMovement()
 	}
 }
 
+int getScore()
+{
+	return wynik;
+}
+
+int readHighscore()
+{
+	fstream plik;
+	plik.open("highscore.txt", ios::in);
+	string score = "0";
+
+	getline(plik, score);
+	plik.close();
+	score.erase(std::remove(score.begin(), score.end(), '\n'), score.cend());
+	return stoi(score);
+}
 
 void gameOver()
 {
@@ -245,6 +266,9 @@ void gameOver()
 	}
 	gameStarted = false;
 	cout << "\n\nWciœnij dowolny przycisk, ¿eby powróciæ do menu.";
+
+	saveScore(wynik);
+
 	int c = _getch();
 	if (c && c == 224)
 		c = _getch();

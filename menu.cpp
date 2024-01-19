@@ -2,15 +2,17 @@
 #include <conio.h>
 #include <io.h>
 #include <fcntl.h>
+#include <fstream>
+#include <string>
 
 #include"headers.h"
 
 using namespace std;
 
+bool gameOn = true;
 
 void menu()
 {
-	bool gameOn = true;
 	bool wrongChoiceFlag = false;
 	while (gameOn)
 	{
@@ -32,7 +34,7 @@ void menu()
 		{
 		case '1': gameStart(); break;
 		case '2': sterowanie(); break;
-		case '3': gameOn = false; gameStarted = false; break;
+		case '3': exitGame(); break;
 		default:
 			wrongChoiceFlag = true;
 		}
@@ -48,4 +50,22 @@ void sterowanie()
 	_setmode(_fileno(stdout), _O_TEXT);
 	cout << "Wciśnij dowolny klawisz, żeby powrócić do menu.\n";
 	_getch();
+}
+
+void saveScore(int score)
+{
+	fstream plik;
+	if (score > readHighscore())
+	{
+		plik.open("highscore.txt", ios::out);
+		plik << to_string(score);
+		plik.close();
+	}
+}
+
+void exitGame()
+{
+	gameOn = false; 
+	gameStarted = false;
+	saveScore(getScore());
 }
